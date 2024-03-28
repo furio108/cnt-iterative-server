@@ -108,11 +108,15 @@ public class Client {
                     threadList.get(i).start();
                 }
 
-                //for loop to join threads + get total time
+                //for loop to join threads 
+                for (int i = 0; i < iterations; i++) {
+                    threadList.get(i).join();
+                }
+
+                //calculate total time
                 for (int i = 0; i < iterations; i++) {
                     System.out.println("Turn-around Time for Client " + i + ": " + intList.get(i).intValue() + "ms");
                     totalTime += intList.get(i).intValue();
-                    threadList.get(i).join();
                 }
 
                 //calculate average thread time
