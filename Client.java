@@ -34,7 +34,7 @@ class ThreadHandler implements Runnable {
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
             String line = reader.readLine();
-            System.out.println("Client " + threadNum + " received: " + line);
+            System.out.println("Client " + (threadNum+1) + " received: " + line);
 
             //calculate thread time
             long endTime = System.currentTimeMillis();
@@ -61,13 +61,16 @@ class ThreadHandler implements Runnable {
 public class Client { 
     public static void main(String[] args) {
         try {
-            int totalTime = 0;
-            double averageTime = 0;
+            String serverIP = "139.62.210.155";
+            String temp;
 
             Scanner scan = new Scanner(System.in);
 
-            System.out.println("Please provide server IP");
-            String serverIP = scan.next();
+            System.out.println("Please provide server IP OR x for 139.62.210.155");
+            temp = scan.next();
+            if (!temp.equals("x")) {
+                serverIP = temp;
+            }
             System.out.println("Please provide server port");
             int serverPort = scan.nextInt();
 
@@ -75,6 +78,9 @@ public class Client {
 
             int command = -1;
             while(true) {
+                int totalTime = 0;
+                double averageTime = 0;
+
                 //print menu
                 System.out.println("---Type one of the following commands---");
                 System.out.println("1. Date and Time - the date and time on the server");
@@ -115,13 +121,15 @@ public class Client {
 
                 //calculate total time
                 for (int i = 0; i < iterations; i++) {
-                    System.out.println("Turn-around Time for Client " + i + ": " + intList.get(i).intValue() + "ms");
+                    System.out.println("Turn-around Time for Client " + (i+1) + ": " + intList.get(i).intValue() + "ms");
                     totalTime += intList.get(i).intValue();
                 }
+                System.out.println("Total Turn-around Time: " + totalTime + "ms");
 
                 //calculate average thread time
                 System.out.println("Average Turn-around Time: " + totalTime / iterations + "ms");
-                
+
+                System.out.println();               
 
             } 
         }
