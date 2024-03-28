@@ -29,7 +29,7 @@ class ThreadHandler implements Runnable {
             OutputStream output = socket.getOutputStream();
             PrintWriter writer = new PrintWriter(output, true);
             writer.println(command);
-
+            
             //collect result
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
@@ -41,12 +41,10 @@ class ThreadHandler implements Runnable {
             this.intList.set(threadNum, new Integer((int)(endTime - startTime)));
 
             //close buffers
-            writer.close();
             reader.close();
+            writer.close();
             output.close();
             input.close();
-
-
             //close socket
             socket.close();
         }
@@ -73,8 +71,6 @@ public class Client {
             }
             System.out.println("Please provide server port");
             int serverPort = scan.nextInt();
-
-            Socket server = new Socket(serverIP, serverPort);
 
             int command = -1;
             while(true) {
