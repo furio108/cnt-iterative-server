@@ -27,6 +27,7 @@ public class Server {
 
 				switch(command) {
 					case "1":
+						System.out.println("New client connected");
 						p = Runtime.getRuntime().exec("date");
 						stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 						while((commandOutput = stdInput.readLine()) != null)
@@ -34,9 +35,11 @@ public class Server {
 							writer.println(commandOutput);
 						}
 						stdInput.close();
+						System.out.println("Completed 'date' command for client");
 						break;
 
 					case "2":
+						System.out.println("New client connected");
 						p = Runtime.getRuntime().exec("uptime");
 						stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 						while((commandOutput = stdInput.readLine()) != null)
@@ -44,9 +47,11 @@ public class Server {
 							writer.println(commandOutput);
 						}
 						stdInput.close();
+						System.out.println("Completed 'uptime' command for client");
 						break;
 
 					case "3":
+						System.out.println("New client connected");
 						p = Runtime.getRuntime().exec("free");
 						stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 						while((commandOutput = stdInput.readLine()) != null)
@@ -55,9 +60,11 @@ public class Server {
 							writer.println(commandOutput);
 						}
 						stdInput.close();
+						System.out.println("Completed 'free' command for client");
 						break;
 
 					case "4":
+						System.out.println("New client connected");
 						p = Runtime.getRuntime().exec("netstat");
 						stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 						while((commandOutput = stdInput.readLine()) != null)
@@ -65,9 +72,11 @@ public class Server {
 							writer.println(commandOutput);
 						}
 						stdInput.close();
+						System.out.println("Completed 'netstat' command for client");
 						break;
 
 					case "5":
+						System.out.println("New client connected");
 						p = Runtime.getRuntime().exec("w");
 						stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 						while((commandOutput = stdInput.readLine()) != null)
@@ -75,9 +84,11 @@ public class Server {
 							writer.println(commandOutput);
 						}
 						stdInput.close();
+						System.out.println("Completed 'w' command for client");
 						break;
 
 					case "6":
+						System.out.println("New client connected");
 						p = Runtime.getRuntime().exec("ps");
 						stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 						while((commandOutput = stdInput.readLine()) != null)
@@ -85,6 +96,7 @@ public class Server {
 							writer.println(commandOutput);
 						}
 						stdInput.close();
+						System.out.println("Completed 'ps' command for client");
 						break;
 
 					default:

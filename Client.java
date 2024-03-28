@@ -33,7 +33,8 @@ class ThreadHandler implements Runnable {
             //collect result
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-            System.out.println("Client " + (threadNum+1) + " received: ");
+            //don't need this
+            //System.out.println("Client " + (threadNum+1) + " received: "); 
             reader.lines().forEach(s -> System.out.println(s));
 
             //calculate thread time
