@@ -127,7 +127,7 @@ public class Client {
                 System.out.println("Total Turn-around Time: " + totalTime + "ms");
 
                 //calculate average thread time
-                System.out.println("Average Turn-around Time: " + totalTime / iterations + "ms");
+                System.out.println("Average Turn-around Time: " + ((double)totalTime )/ iterations + "ms");
 
                 System.out.println();               
 
