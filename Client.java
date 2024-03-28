@@ -33,8 +33,8 @@ class ThreadHandler implements Runnable {
             //collect result
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-            String line = reader.readLine();
-            System.out.println("Client " + (threadNum+1) + " received: " + line);
+            System.out.println("Client " + (threadNum+1) + " received: ");
+            reader.lines().forEach(s -> System.out.println(s));
 
             //calculate thread time
             long endTime = System.currentTimeMillis();
@@ -45,6 +45,7 @@ class ThreadHandler implements Runnable {
             writer.close();
             output.close();
             input.close();
+
             //close socket
             socket.close();
         }
@@ -64,12 +65,12 @@ public class Client {
 
             Scanner scan = new Scanner(System.in);
 
-            System.out.println("Please provide server IP OR x for 139.62.210.155");
+            System.out.println("Please Enter Network Address (or x for 139.62.210.155)");
             temp = scan.next();
             if (!temp.equals("x")) {
                 serverIP = temp;
             }
-            System.out.println("Please provide server port");
+            System.out.println("Please Enter Port");
             int serverPort = scan.nextInt();
 
             int command = -1;
@@ -78,7 +79,8 @@ public class Client {
                 double averageTime = 0;
 
                 //print menu
-                System.out.println("---Type one of the following commands---");
+                System.out.println();
+                System.out.println("---Please Enter Number Corresponding to Desired Command---");
                 System.out.println("1. Date and Time - the date and time on the server");
                 System.out.println("2. Uptime - how long the server has been running since last boot-up");
                 System.out.println("3. Memory Use - the current memory usage on the server");
@@ -92,10 +94,16 @@ public class Client {
                 if (command == 0) {
                     break;
                 }
+                else if (command != 1 && command != 2 && command != 3 && command != 4 && command != 5 && command != 6) {
+                    System.out.println("INVALID CHOICE");
+                    continue;
+                }
 
                 //get number of iterations
-                System.out.println("---Please provide the number of iterations you would like to run---");
+                System.out.println();
+                System.out.println("---Please Enter Number of Request (1, 5, 10, 15, 20, 25)---");
                 int iterations = scan.nextInt();
+                System.out.println();
 
                 //create threads
                 ArrayList<Thread> threadList = new ArrayList<>();
@@ -115,6 +123,8 @@ public class Client {
                     threadList.get(i).join();
                 }
 
+                System.out.println();
+
                 //calculate total time
                 for (int i = 0; i < iterations; i++) {
                     System.out.println("Turn-around Time for Client " + (i+1) + ": " + intList.get(i).intValue() + "ms");
@@ -124,7 +134,6 @@ public class Client {
 
                 //calculate average thread time
                 System.out.println("Average Turn-around Time: " + ((double)totalTime )/ iterations + "ms");
-
                 System.out.println();               
 
             } 
